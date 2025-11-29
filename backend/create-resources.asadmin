@@ -1,0 +1,20 @@
+# -----------------------------------
+# Payara JDBC Resource Configuration
+# -----------------------------------
+
+# Create MySQL Connection Pool
+create-jdbc-connection-pool \
+    --restype=javax.sql.DataSource \
+    --datasourceclassname=com.mysql.cj.jdbc.MysqlDataSource \
+    --property \
+        user=${DB_USER}:\
+        password=${DB_PASS}:\
+        DatabaseName=${DB_NAME}:\
+        ServerName=${DB_HOST}:\
+        PortNumber=${DB_PORT} \
+    TicketPool
+
+# Create JDBC Resource Binding
+create-jdbc-resource \
+    --connectionpoolid TicketPool \
+    jdbc/ticketdb

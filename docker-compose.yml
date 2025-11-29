@@ -1,0 +1,45 @@
+version: "3.9"
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: ticket-db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: ticketdb
+      MYSQL_USER: ticketuser
+      MYSQL_PASSWORD: ticketpass
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    container_name: ticket-backend
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: ticketdb
+      DB_USER: ticketuser
+      DB_PASS: ticketpass
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: ticket-frontend
+    environment:
+      REACT_APP_API_URL: http://backend:8080/api
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  db-data:
