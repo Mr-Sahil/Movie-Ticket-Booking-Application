@@ -1,4 +1,4 @@
-Movie Ticket Booking — Full-stack Project
+Movie Ticket Booking — Full-Stack Project
 
 Production-ready starter full-stack movie ticket booking app (backend + frontend) built with Java + Jakarta EE (REST APIs), Payara, MySQL, and React.js.
 This repository contains a working backend service (Jakarta EE / JAX-RS) and a simple React frontend that lets users view shows, select seats, and place bookings.
@@ -23,6 +23,8 @@ JSON-B (JSON Binding) for JSON serialization/deserialization
 Note: acronyms are expanded where used (example: JDBC = Java Database Connectivity).
 
 3. Repo layout (important files)
+
+```
 movie-ticket-booking/
 ├── backend/
 │   ├── pom.xml
@@ -45,14 +47,15 @@ movie-ticket-booking/
 │       ├── App.js
 │       ├── api.js
 │       └── components/SeatSelector.jsx
-└── docker-compose.yml
+├── docker-compose.yml
 └── sql/
     └── init.sql
+```
 
 4. Quick start — run with Docker Compose (recommended)
 Make sure Docker Desktop (or Docker Engine) is installed & running.
 From project root:
-# ensure docker daemon is running, then:
+Ensure docker daemon is running, then:
 docker compose up --build
 Services started:
 MySQL: <db-host>:3306 (DB: ticketdb, user: ticketuser, password: ticketpass)
@@ -73,7 +76,7 @@ Frontend (dev)
 cd frontend
 npm install
 npm start
-# frontend dev server opens at http://<frontend-host>:3000
+Frontend dev server opens at http://<frontend-host>:3000
 To build production frontend bundle:
 npm run build
 
